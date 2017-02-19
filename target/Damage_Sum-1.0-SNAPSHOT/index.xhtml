@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<h:head>
+		<link href="css/style.css" rel="stylesheet" />
+		<title>Damage Amount</title>
+	</h:head>
+	<h:body>
+		<div class="main">
+			<div class="form">
+			<h:form enctype="multipart/form-data">
+				<h:inputFile requiredMessage="false" id="uploader" value="#{uploadBean.file}" validator="#{uploadBean.validate}" label="">
+					<f:ajax listener="#{uploadBean.upload}" render=":bolts :download :message @form" />
+				</h:inputFile>
+				<br/>
+				<h:message for="uploader" />
+			</h:form>
+			</div>
+			<h:outputLabel id="message">
+				<p class="message">#{uploadBean.message}</p>
+			</h:outputLabel>
+			<h:outputLabel id="bolts">
+				<c:if test="#{! empty uploadBean.bolts}">
+					<p class="p2">Input data</p>
+					<div class="items">
+						<p style="display: inline">Bolts: </p>
+						<c:forEach items="#{uploadBean.bolts}" var="b">
+							<p style="display: inline">#{b}</p>
+						</c:forEach>
+						<br/>
+						<p style="display: inline">Nuts: </p>
+						<c:forEach items="#{uploadBean.nuts}" var="b">
+							<p class="p1" style="display: inline">#{b}</p>
+						</c:forEach>
+					</div>
+					<div class="total">
+						<p>Total damage: #{uploadBean.damage}</p>
+					</div>
+				</c:if>
+			</h:outputLabel>
+			<div class="dload">
+			<h:form id="download">
+				<c:if test="#{! empty uploadBean.bolts}">
+					<h:commandButton value="Download" action="#{uploadBean.downloadFile}" />
+				</c:if>
+			</h:form>
+			</div>
+		</div>
+	</h:body>
+
+	</html>

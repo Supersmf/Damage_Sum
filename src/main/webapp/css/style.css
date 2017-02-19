@@ -1,0 +1,43 @@
+body{
+	background: aliceblue;
+}
+.main {
+	margin-top: 150px;
+	width: 250px;
+	height: 225px;
+	border: 2px solid #00BCD4;
+	border-radius: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	background: white;
+}
+.form{
+	position: relative;
+	margin: 20px 20px 10px 12px;
+	
+}
+.message{
+	position: absolute;
+    left: 130px;
+    top: 5px;
+    background: white;
+    width: 120px;
+}
+.p1{
+	text-align: center;
+	margin-top: 5px;
+}
+.p2{
+	text-align: center;
+}
+.items{
+	margin-left: 64px;
+}
+.total{
+	text-align: center;
+    color: green;
+}
+.dload{
+	margin-left: 80px;
+}
