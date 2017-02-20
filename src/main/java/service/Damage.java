@@ -1,3 +1,5 @@
+package service;
+
 import javax.servlet.http.Part;
 import java.io.*;
 import java.util.Arrays;
@@ -20,7 +22,6 @@ public class Damage {
             if(data != null) data.close();
             if(buff != null) buff.close();
         }
-
         if(item.equals("bolts")) return bolts;
         if(item.equals("nuts")) return nuts;
         return null;

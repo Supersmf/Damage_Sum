@@ -1,10 +1,11 @@
-import javax.faces.application.FacesMessage;
+package controller;
+
+import service.Damage;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 import javax.servlet.http.Part;
 import java.io.*;
 
@@ -25,8 +26,8 @@ public class UploadBean {
 			nuts = Damage.getItem(file,"nuts");
 			damage = Damage.damageSum(bolts, nuts);
 			message = file.getSubmittedFileName();
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 			message = "It's impossible to read the file";
 		}
 	}
@@ -53,23 +54,7 @@ public class UploadBean {
 			}
 		}
 	}
-	
-	public void validate(FacesContext context, UIComponent component, Object value) {
-		Part file = (Part) value;
 
-		if (!(file.getSubmittedFileName()).contains(".txt")){
-			throw new ValidatorException(new FacesMessage("File format should be '.txt'"));
-		}
-		if (file.getSize() == 0) {
-			throw new ValidatorException(new FacesMessage("File is empty"));
-		}
-		if (file.getSize() > 50) {
-			throw new ValidatorException(new FacesMessage("File is to large"));
-		}
-		if (!file.getContentType().equals("text/plain"))
-			throw new ValidatorException(new FacesMessage("File is not a text file"));
-	}
-	
 	public Part getFile() {
 		return file;
 	}
